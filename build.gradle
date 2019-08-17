@@ -15,6 +15,7 @@ buildscript {
         junit_version = '4.12'
         andx_junit_version = '1.1.1'
         espresso_core_version = '3.2.0'
+        material_version = '1.1.0-alpha09'
     }
     repositories {
         google()

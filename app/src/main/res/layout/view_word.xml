@@ -32,23 +32,27 @@
             app:layout_constraintTop_toTopOf="@+id/loading"
             android:text="@string/word_example" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/right"
             layout_marginStart="@dimen/fifty_dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/word_right"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:icon="@drawable/ic_right"
             app:layout_constraintBottom_toBottomOf="@+id/loading"
             app:layout_constraintEnd_toStartOf="@+id/wrong"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/word" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/wrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/word_wrong"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:icon="@drawable/ic_wrong"
             app:layout_constraintEnd_toEndOf="@+id/lottie_barrier"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/right"
