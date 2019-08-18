@@ -47,6 +47,9 @@ class WordRepositoryTest {
     @Test
     fun test_createGuess_shouldReturnDefaultValues() {
         repository.get(context)
+
+        count.drainTasks(1, TimeUnit.SECONDS)
+
         repository.getGuess().value?.apply {
             assertNotNull(word)
             assertNotNull(translated)
