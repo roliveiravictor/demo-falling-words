@@ -1,7 +1,6 @@
 package com.stonetree.fallingwords.feature.word.view
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,6 +71,9 @@ class WordView : Fragment() {
     }
 
     fun popNextWord(view: View) {
-        vm.next()
+        vm.next().let { hasNext ->
+            if(!hasNext)
+                navigateToResultView(view)
+        }
     }
 }

@@ -61,15 +61,17 @@ class WordRepository {
         }
     }
 
-    fun next() {
+    fun next(): Boolean {
         words.apply {
             value?.translations?.let { translations ->
                 if(translations.size > 1) {
                     translations.removeAt(0)
                     postValue(value)
+                    return true
                 }
             }
         }
+        return false
     }
 
     fun generateBundle(): Bundle {

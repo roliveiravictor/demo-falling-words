@@ -65,11 +65,12 @@ class WordRepositoryTest {
         count.drainTasks(1, TimeUnit.SECONDS)
 
         repository.getGuess()?.apply {
-            repository.next()
+            val result = repository.next()
 
             count.drainTasks(1, TimeUnit.SECONDS)
 
             assertEquals(4, value?.translations?.size)
+            assertTrue(result)
         }
     }
 
@@ -82,13 +83,15 @@ class WordRepositoryTest {
 
         count.drainTasks(1, TimeUnit.SECONDS)
 
+        var result: Boolean = true
         for(i in 1..10)
-            repository.next()
+            result = repository.next()
 
         count.drainTasks(1, TimeUnit.SECONDS)
 
         repository.getGuess()?.apply {
             assertEquals(1, value?.translations?.size)
+            assertFalse(result)
         }
     }
 

@@ -23,7 +23,7 @@ class WordViewModel(private val context: Context): ViewModel() {
         viewModelScope.cancel()
     }
 
-    fun next() { repository.next() }
+    fun next(): Boolean = repository.next()
 
     fun generateBundle(): Bundle = repository.generateBundle()
 
