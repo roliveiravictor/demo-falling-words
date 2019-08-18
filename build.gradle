@@ -20,6 +20,8 @@ buildscript {
         fragment_testing_version = '1.2.0-alpha02'
         rules_version = '1.2.0'
         runner_version = '1.2.0'
+        converter_gson_version = '2.6.0'
+        mockito_core_version = '2.28.2'
     }
     repositories {
         google()

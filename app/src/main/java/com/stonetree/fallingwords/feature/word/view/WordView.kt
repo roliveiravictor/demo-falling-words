@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.stonetree.fallingwords.core.utils.InjectorUtils
 import com.stonetree.fallingwords.databinding.ViewWordBinding
 import com.stonetree.fallingwords.feature.word.viewmodel.WordViewModel
@@ -16,7 +17,7 @@ class WordView : Fragment() {
 
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     val vm: WordViewModel by viewModels {
-        InjectorUtils.provideWordViewModelFactory()
+        InjectorUtils.provideWordViewModelFactory(requireContext())
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -36,13 +37,13 @@ class WordView : Fragment() {
         data: ViewWordBinding
     ) {
         data.view = this@WordView
-
-        // Do Nothing
     }
 
     private fun bindObservers(
         data: ViewWordBinding
     ){
-        // Do Nothing
+        vm.words.observe(viewLifecycleOwner) { words ->
+            data.word.text = words.first().english
+        }
     }
 }

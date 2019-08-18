@@ -7,6 +7,10 @@
 
     <data>
         <variable
+            name="word"
+            type="String"/>
+
+        <variable
             name="vm"
             type="com.stonetree.fallingwords.feature.word.viewmodel.WordViewModel"/>
 
@@ -16,6 +20,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_word_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,7 +35,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/loading"
-            android:text="@string/word_example" />
+            tools:text="@string/word_example"
+            android:text="@{word}"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/right"
