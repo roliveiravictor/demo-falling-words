@@ -16,7 +16,7 @@ class WordView : Fragment() {
 
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     val vm: WordViewModel by viewModels {
-        InjectorUtils.provideLatestViewModelFactory()
+        InjectorUtils.provideWordViewModelFactory()
     }
 
     override fun onCreateView(inflater: LayoutInflater,
