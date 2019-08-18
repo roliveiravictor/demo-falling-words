@@ -6,4 +6,6 @@
     <string name="word_new_game">New Game</string>
     <string name="word_win">You win!</string>
     <string name="word_lose">You lose!</string>
+    <string name="word_translation_title">Translate: %s</string>
 </resources>
+

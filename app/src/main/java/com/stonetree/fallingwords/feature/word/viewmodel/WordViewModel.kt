@@ -22,6 +22,10 @@ class WordViewModel(private val context: Context): ViewModel() {
         viewModelScope.cancel()
     }
 
+    fun next() {
+        repository.next()
+    }
+
     init {
         viewModelScope.launch {
             repository.get(context)

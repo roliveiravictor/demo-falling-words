@@ -56,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/word_wrong"
+            android:onClick="@{view::popNextWord}"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             app:icon="@drawable/ic_wrong"
             app:layout_constraintEnd_toEndOf="@+id/lottie_barrier"

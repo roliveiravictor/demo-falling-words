@@ -58,4 +58,15 @@ class WordRepository {
             }
         }
     }
+
+    fun next() {
+        words.apply {
+            value?.translations?.let { translations ->
+                if(translations.size > 1) {
+                    translations.removeAt(0)
+                    postValue(value)
+                }
+            }
+        }
+    }
 }

@@ -68,8 +68,9 @@ class WordViewTest {
 
     @Test
     fun test_title_shouldReturnAppName() {
-        val appName = rule.activity.getString(R.string.app_name)
-        assertEquals(appName, fragment?.activity?.title)
+        fragment?.activity?.title?.apply {
+            assertTrue(contains("Translate"))
+        }
     }
 
     @Test
@@ -89,5 +90,15 @@ class WordViewTest {
             .currentDestination?.id
 
         assertEquals(R.id.result_view, id)
+    }
+
+    @Test
+    fun test_wrong_shouldReturn() {
+        onView(withId(R.id.wrong))
+            .perform(click())
+
+        fragment?.vm?.guess?.value?.translations?.apply {
+            assertEquals(4, size)
+        }
     }
 }

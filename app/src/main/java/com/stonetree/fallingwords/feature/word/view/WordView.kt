@@ -11,11 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.stonetree.fallingwords.R
-import com.stonetree.fallingwords.core.constants.Constants.WORD_TIMEOUT
 import com.stonetree.fallingwords.core.utils.InjectorUtils
 import com.stonetree.fallingwords.databinding.ViewWordBinding
 import com.stonetree.fallingwords.feature.word.viewmodel.WordViewModel
 import java.lang.reflect.Modifier
+import java.util.ArrayList
 
 class WordView : Fragment() {
 
@@ -32,14 +32,13 @@ class WordView : Fragment() {
 
         bindXml(data)
         bindObservers(data)
-        bindObservers(data)
 
         return data.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Handler().postDelayed( { view?.apply { navigateToResultView(this) } }, WORD_TIMEOUT)
+//        Handler().postDelayed( { view?.apply { navigateToResultView(this) } }, WORD_TIMEOUT)
     }
 
     private fun bindXml(
@@ -52,11 +51,27 @@ class WordView : Fragment() {
         data: ViewWordBinding
     ){
         vm.guess.observe(viewLifecycleOwner) { guess ->
-            data.translated.text = guess.translations?.first()
+            updateTranslations(data, guess.translations)
+            updateTitle(guess.word)
         }
+    }
+
+    private fun updateTranslations(
+        data: ViewWordBinding,
+        translations: ArrayList<String>?)
+    {
+        data.translated.text = translations?.first()
+    }
+
+    private fun updateTitle(title: String?) {
+        activity?.title = getString(R.string.word_translation_title, title)
     }
 
     fun navigateToResultView(view: View) {
         findNavController().navigate(R.id.action_word_to_result_view)
+    }
+
+    fun popNextWord(view: View) {
+        vm.next()
     }
 }

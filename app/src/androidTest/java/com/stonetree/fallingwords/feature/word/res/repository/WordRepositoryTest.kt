@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.stonetree.fallingwords.core.constants.Constants.WORDS_FILE
 import com.stonetree.fallingwords.core.constants.TestConstants
 import com.stonetree.fallingwords.core.extensions.read
+import com.stonetree.fallingwords.feature.word.model.Guess
 import junit.framework.TestCase.assertEquals
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.*
@@ -43,6 +44,34 @@ class WordRepositoryTest {
             assertNotNull(translated)
             assertNotNull(translations)
             assertEquals(5, translations?.size)
+        }
+    }
+
+    @Test
+    fun test_next_shouldReturnOneLess() {
+        val guess = Guess().also { guess ->
+            guess.translations = arrayListOf("1", "2", "3", "4", "5")
+        }
+        repository.getGuess().postValue(guess)
+
+        repository.getGuess()?.apply {
+            repository.next()
+            assertEquals(4, value?.translations?.size)
+        }
+    }
+
+    @Test
+    fun test_nextOverflow_shouldReturnNotEmpty() {
+        val guess = Guess().also { guess ->
+            guess.translations = arrayListOf("1", "2", "3", "4", "5")
+        }
+        repository.getGuess().postValue(guess)
+
+        for(i in 1..10)
+            repository.next()
+
+        repository.getGuess()?.apply {
+            assertEquals(1, value?.translations?.size)
         }
     }
 }
