@@ -68,7 +68,7 @@ class WordView : Fragment() {
     }
 
     fun navigateToResultView(view: View) {
-        findNavController().navigate(R.id.action_word_to_result_view)
+        findNavController().navigate(R.id.action_word_to_result_view, vm.generateBundle())
     }
 
     fun popNextWord(view: View) {

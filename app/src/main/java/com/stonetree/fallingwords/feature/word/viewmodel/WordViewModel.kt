@@ -1,6 +1,7 @@
 package com.stonetree.fallingwords.feature.word.viewmodel
 
 import android.content.Context
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,9 +23,9 @@ class WordViewModel(private val context: Context): ViewModel() {
         viewModelScope.cancel()
     }
 
-    fun next() {
-        repository.next()
-    }
+    fun next() { repository.next() }
+
+    fun generateBundle(): Bundle = repository.generateBundle()
 
     init {
         viewModelScope.launch {

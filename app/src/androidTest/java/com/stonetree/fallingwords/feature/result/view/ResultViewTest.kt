@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.stonetree.fallingwords.MainView
 import com.stonetree.fallingwords.R
+import com.stonetree.fallingwords.core.constants.Constants.RESULT_KEY
 import com.stonetree.fallingwords.core.extensions.execute
 import com.stonetree.fallingwords.core.extensions.launchFragmentScenario
 import org.junit.Assert.*
@@ -33,7 +34,7 @@ class ResultViewTest {
 
     private fun jumpToResultViewFragment() {
         val bundle = Bundle()
-        bundle.putBoolean("result", false)
+        bundle.putBoolean(RESULT_KEY, false)
 
         rule.activity
             .findNavController(R.id.nav_fragment)
