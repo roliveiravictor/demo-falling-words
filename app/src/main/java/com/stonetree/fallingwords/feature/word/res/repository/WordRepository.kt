@@ -40,15 +40,15 @@ class WordRepository {
     }
 
     private fun createGuess(model: List<WordModel>): Guess = Guess()
-                .buildMain(model)
-                .withRandomTranslations(model)
-                .withInjectedAnswer()
+        .buildMain(model)
+        .withRandomTranslations(model)
+        .withInjectedAnswer()
 
     fun next(): Boolean {
         words.apply {
             value?.translations?.let { translations ->
                 val hasNextWord = translations.size > 1
-                if(hasNextWord) {
+                if (hasNextWord) {
                     translations.removeAt(0)
                     postValue(value)
                     return true
@@ -62,7 +62,7 @@ class WordRepository {
         val bundle = Bundle()
         words.value?.apply {
             translations?.first().let { toMatchTranslated ->
-                if(translated.equals(toMatchTranslated))
+                if (translated.equals(toMatchTranslated))
                     bundle.putBoolean(RESULT_KEY, true)
                 else
                     bundle.putBoolean(RESULT_KEY, false)

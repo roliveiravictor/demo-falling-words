@@ -5,7 +5,9 @@ import com.stonetree.fallingwords.core.extensions.withInjectedAnswer
 import com.stonetree.fallingwords.core.extensions.withRandomTranslations
 import com.stonetree.fallingwords.feature.word.model.Guess
 import com.stonetree.fallingwords.feature.word.model.WordModel
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertNull
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class GuessExtensionTest {

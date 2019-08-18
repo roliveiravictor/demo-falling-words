@@ -10,4 +10,7 @@ object Constants {
 
     const val WORD_TIMEOUT: Long = 11000
     const val RESULT_TIMEOUT: Long = 3000
+
+    const val ANSWER_MAX_RANGE = 4
+    const val TRANSLATIONS_MAX_RANGE = 3
 }

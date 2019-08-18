@@ -14,7 +14,7 @@ import com.stonetree.fallingwords.core.extensions.observeLiveData
 import com.stonetree.fallingwords.feature.word.model.WordModel
 import org.junit.Rule
 import org.junit.runner.RunWith
-import org.mockito.Mockito.*
+import org.mockito.Mockito.verify
 
 @RunWith(AndroidJUnit4::class)
 class WordViewModelTest {
@@ -27,14 +27,14 @@ class WordViewModelTest {
     private lateinit var vm: WordViewModel
 
     @Before
-    fun setup(){
+    fun setup() {
         vm = WordViewModel(context)
     }
 
     @Test
     fun test_wordViewModel_shouldReturnDefaultValues() {
         vm.apply {
-            assertThat(guess,`is`(any(LiveData::class.java)))
+            assertThat(guess, `is`(any(LiveData::class.java)))
         }
     }
 

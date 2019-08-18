@@ -1,11 +1,13 @@
 package com.stonetree.fallingwords.feature.word.view
 
 import androidx.navigation.findNavController
-import androidx.test.espresso.Espresso.*
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.PerformException
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.*
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
@@ -15,8 +17,12 @@ import com.stonetree.fallingwords.core.constants.TestConstants.PACKAGE
 import com.stonetree.fallingwords.core.extensions.execute
 import com.stonetree.fallingwords.core.extensions.launchFragmentScenario
 import org.hamcrest.CoreMatchers.not
-import org.junit.*
-import org.junit.Assert.*
+import org.junit.Rule
+import org.junit.Test
+import org.junit.Before
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)

@@ -5,20 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.stonetree.fallingwords.core.constants.Constants.RESULT_KEY
-import com.stonetree.fallingwords.core.constants.Constants.WORDS_FILE
-import com.stonetree.fallingwords.core.constants.TestConstants
-import com.stonetree.fallingwords.core.extensions.read
 import com.stonetree.fallingwords.feature.word.model.Guess
-import junit.framework.TestCase.*
-import org.hamcrest.CoreMatchers.*
-import org.hamcrest.MatcherAssert.*
+import junit.framework.TestCase.assertTrue
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.any
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.verify
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
@@ -35,7 +33,7 @@ class WordRepositoryTest {
     @Test
     fun test_mutableLiveData_shouldReturnObject() {
         repository.apply {
-            assertThat(getGuess(),`is`(any(MutableLiveData::class.java)))
+            assertThat(getGuess(), `is`(any(MutableLiveData::class.java)))
         }
     }
 
@@ -87,7 +85,7 @@ class WordRepositoryTest {
         count.drainTasks(1, TimeUnit.SECONDS)
 
         var result: Boolean = true
-        for(i in 1..10)
+        for (i in 1..10)
             result = repository.next()
 
         count.drainTasks(1, TimeUnit.SECONDS)
@@ -121,10 +119,8 @@ class WordRepositoryTest {
 
         count.drainTasks(1, TimeUnit.SECONDS)
 
-        repository.generateBundle()?.
-            getBoolean(RESULT_KEY)?.
-            apply {
-                assertTrue(this)
-            }
+        repository.generateBundle()?.getBoolean(RESULT_KEY)?.apply {
+            assertTrue(this)
+        }
     }
 }

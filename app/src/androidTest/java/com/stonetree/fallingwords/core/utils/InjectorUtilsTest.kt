@@ -3,8 +3,9 @@ package com.stonetree.fallingwords.core.utils
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.stonetree.fallingwords.feature.word.res.factory.WordViewModelFactory
-import org.hamcrest.CoreMatchers.*
-import org.hamcrest.MatcherAssert.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.any
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -16,6 +17,6 @@ class InjectorUtilsTest {
     @Test
     fun test_injectorUtils_shouldReturnDefaultValues() {
         val factory = InjectorUtils.provideWordViewModelFactory(context)
-        assertThat(factory,`is`(any(WordViewModelFactory::class.java)))
+        assertThat(factory, `is`(any(WordViewModelFactory::class.java)))
     }
 }
