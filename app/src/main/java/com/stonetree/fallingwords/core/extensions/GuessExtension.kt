@@ -14,7 +14,7 @@ fun Guess.buildMain(model: List<WordModel>): Guess {
 }
 
 fun Guess.withRandomTranslations(model: List<WordModel>): Guess {
-    for(i in 0..TRANSLATIONS_MAX_RANGE) {
+    for (i in 0..TRANSLATIONS_MAX_RANGE) {
         val randomPos = model.size.randomize()
         translations?.let { translations ->
             model[randomPos].spanish?.apply {

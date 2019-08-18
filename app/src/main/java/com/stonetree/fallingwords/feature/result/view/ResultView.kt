@@ -1,6 +1,5 @@
 package com.stonetree.fallingwords.feature.result.view
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import com.stonetree.fallingwords.core.constants.Constants
 import com.stonetree.fallingwords.core.constants.Constants.LOSE_FILE
 import com.stonetree.fallingwords.core.constants.Constants.WIN_FILE
 import com.stonetree.fallingwords.databinding.ViewResultBinding
-import java.util.*
+import java.util.Timer
 import kotlin.concurrent.timerTask
 
 class ResultView : Fragment() {
@@ -23,10 +22,11 @@ class ResultView : Fragment() {
 
     private val args: ResultViewArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              viewGroup: ViewGroup?,
-                              savedInstanceState: Bundle?): View?
-    {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        viewGroup: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val data = ViewResultBinding.inflate(inflater, viewGroup, false)
 
         bindTitle()

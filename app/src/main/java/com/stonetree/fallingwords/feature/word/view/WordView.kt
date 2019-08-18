@@ -1,7 +1,6 @@
 package com.stonetree.fallingwords.feature.word.view
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import com.stonetree.fallingwords.core.utils.InjectorUtils
 import com.stonetree.fallingwords.databinding.ViewWordBinding
 import com.stonetree.fallingwords.feature.word.viewmodel.WordViewModel
 import java.lang.reflect.Modifier
-import java.util.*
+import java.util.Timer
 import kotlin.concurrent.timerTask
 
 class WordView : Fragment() {
@@ -28,10 +27,11 @@ class WordView : Fragment() {
         InjectorUtils.provideWordViewModelFactory(requireContext())
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              viewGroup: ViewGroup?,
-                              savedInstanceState: Bundle?): View?
-    {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        viewGroup: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val data = ViewWordBinding.inflate(inflater, viewGroup, false)
 
         bindXml(data)
@@ -64,7 +64,7 @@ class WordView : Fragment() {
 
     private fun bindObservers(
         data: ViewWordBinding
-    ){
+    ) {
         vm.guess.observe(viewLifecycleOwner) { guess ->
             updateTranslations(data, guess.translations)
             updateTitle(guess.word)
@@ -73,8 +73,8 @@ class WordView : Fragment() {
 
     private fun updateTranslations(
         data: ViewWordBinding,
-        translations: ArrayList<String>?)
-    {
+        translations: ArrayList<String>?
+    ) {
         data.translated.text = translations?.first()
     }
 
@@ -88,7 +88,7 @@ class WordView : Fragment() {
 
     fun popNextWord(view: View) {
         vm.next().let { hasNext ->
-            if(!hasNext)
+            if (!hasNext)
                 navigateToResultView(view)
         }
     }

@@ -1,6 +1,5 @@
 package com.stonetree.fallingwords.feature.start.view
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,10 +11,11 @@ import com.stonetree.fallingwords.databinding.ViewStartBinding
 
 class StartView : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              viewGroup: ViewGroup?,
-                              savedInstanceState: Bundle?): View?
-    {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        viewGroup: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val data = ViewStartBinding.inflate(inflater, viewGroup, false)
 
         bindXml(data)

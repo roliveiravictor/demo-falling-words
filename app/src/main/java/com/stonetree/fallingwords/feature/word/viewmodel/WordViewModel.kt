@@ -11,7 +11,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class WordViewModel(private val context: Context): ViewModel() {
+class WordViewModel(private val context: Context) : ViewModel() {
 
     private val repository = WordRepository.getInstance()
 
