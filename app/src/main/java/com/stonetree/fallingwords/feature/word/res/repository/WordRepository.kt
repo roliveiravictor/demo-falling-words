@@ -2,16 +2,16 @@ package com.stonetree.fallingwords.feature.word.res.repository
 
 import android.content.Context
 import android.os.Bundle
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import com.stonetree.fallingwords.core.constants.Constants.WORDS_FILE
 import com.stonetree.fallingwords.core.extensions.read
 import com.google.gson.Gson
 import com.stonetree.fallingwords.core.constants.Constants.RESULT_KEY
-import com.stonetree.fallingwords.core.extensions.randomize
+import com.stonetree.fallingwords.core.extensions.buildMain
+import com.stonetree.fallingwords.core.extensions.withRandomTranslations
+import com.stonetree.fallingwords.core.extensions.withInjectedAnswer
 import com.stonetree.fallingwords.feature.word.model.Guess
 import com.stonetree.fallingwords.feature.word.model.WordModel
-import java.lang.reflect.Modifier.PRIVATE
 
 class WordRepository {
 
@@ -39,32 +39,16 @@ class WordRepository {
         }
     }
 
-    private fun createGuess(model: List<WordModel>): Guess {
-        return Guess().also { guess ->
-            val randomPos = model.size.randomize()
-            guess.word = model[randomPos].english
-            guess.translated = model[randomPos].spanish
-            guess.translations = arrayListOf()
-
-            guess.translated?.apply {
-                guess.translations?.add(this)
-            }
-
-            for(i in 0..3) {
-                val randomPos = model.size.randomize()
-                guess.translations?.let { translations ->
-                    model[randomPos].spanish?.apply {
-                        translations.add(this)
-                    }
-                }
-            }
-        }
-    }
+    private fun createGuess(model: List<WordModel>): Guess = Guess()
+                .buildMain(model)
+                .withRandomTranslations(model)
+                .withInjectedAnswer()
 
     fun next(): Boolean {
         words.apply {
             value?.translations?.let { translations ->
-                if(translations.size > 1) {
+                val hasNextWord = translations.size > 1
+                if(hasNextWord) {
                     translations.removeAt(0)
                     postValue(value)
                     return true
