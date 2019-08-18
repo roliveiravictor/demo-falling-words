@@ -2,7 +2,6 @@ package com.stonetree.fallingwords.feature.result.view
 
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.stonetree.fallingwords.R
+import com.stonetree.fallingwords.core.constants.Constants
 import com.stonetree.fallingwords.core.constants.Constants.LOSE_FILE
-import com.stonetree.fallingwords.core.constants.Constants.RESULT_TIMEOUT
 import com.stonetree.fallingwords.core.constants.Constants.WIN_FILE
 import com.stonetree.fallingwords.databinding.ViewResultBinding
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class ResultView : Fragment() {
+
+    private var timer: Timer? = null
 
     private val args: ResultViewArgs by navArgs()
 
@@ -25,14 +28,29 @@ class ResultView : Fragment() {
                               savedInstanceState: Bundle?): View?
     {
         val data = ViewResultBinding.inflate(inflater, viewGroup, false)
+
+        bindTitle()
+
         return data.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         bindAnimation()
-        bindTitle()
-        Handler().postDelayed( { navigateToWordView() }, RESULT_TIMEOUT)
+
+        timer = Timer().also { timer ->
+            timer.schedule(home(), Constants.RESULT_TIMEOUT)
+        }
+    }
+
+    private fun home() = timerTask {
+        view?.apply { navigateToStartView() }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer?.cancel()
     }
 
     private fun bindAnimation() {
@@ -56,7 +74,7 @@ class ResultView : Fragment() {
             getString(R.string.word_lose)
     }
 
-    private fun navigateToWordView() {
+    private fun navigateToStartView() {
         findNavController().navigate(R.id.action_result_to_start_view)
     }
 }

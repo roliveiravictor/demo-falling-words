@@ -12,10 +12,10 @@
         <action
             android:id="@+id/action_start_to_word_view"
             app:destination="@id/word_view"
+            app:popEnterAnim="@anim/slide_in_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -27,10 +27,10 @@
             android:id="@+id/action_word_to_result_view"
             app:popUpTo="@id/start_view"
             app:destination="@id/result_view"
+            app:popEnterAnim="@anim/slide_in_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -41,10 +41,10 @@
         <action
             android:id="@+id/action_result_to_start_view"
             app:destination="@id/start_view"
+            app:popEnterAnim="@anim/slide_in_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_left" />
         <argument
             android:name="result"
             app:argType="boolean"

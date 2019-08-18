@@ -1,6 +1,7 @@
 package com.stonetree.fallingwords.feature.word.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.stonetree.fallingwords.R
+import com.stonetree.fallingwords.core.constants.Constants.WORD_TIMEOUT
 import com.stonetree.fallingwords.core.utils.InjectorUtils
 import com.stonetree.fallingwords.databinding.ViewWordBinding
 import com.stonetree.fallingwords.feature.word.viewmodel.WordViewModel
 import java.lang.reflect.Modifier
-import java.util.ArrayList
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class WordView : Fragment() {
+
+    private var timer: Timer? = null
 
     @VisibleForTesting(otherwise = Modifier.PRIVATE)
     val vm: WordViewModel by viewModels {
@@ -37,7 +42,18 @@ class WordView : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        Handler().postDelayed( { view?.apply { navigateToResultView(this) } }, WORD_TIMEOUT)
+        timer = Timer().also { timer ->
+            timer.schedule(gameOver(), WORD_TIMEOUT)
+        }
+    }
+
+    private fun gameOver() = timerTask {
+        view?.apply { navigateToResultView(this) }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer?.cancel()
     }
 
     private fun bindXml(
