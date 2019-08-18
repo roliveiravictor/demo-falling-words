@@ -16,6 +16,10 @@ buildscript {
         andx_junit_version = '1.1.1'
         espresso_core_version = '3.2.0'
         material_version = '1.1.0-alpha09'
+        andx_core_testing_version = '2.0.1'
+        fragment_testing_version = '1.2.0-alpha02'
+        rules_version = '1.2.0'
+        runner_version = '1.2.0'
     }
     repositories {
         google()

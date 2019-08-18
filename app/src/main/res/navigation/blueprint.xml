@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/latest_view">
+    app:startDestination="@id/word_view">
 
     <fragment
-        android:id="@+id/latest_view"
+        android:id="@+id/word_view"
         android:name="com.stonetree.fallingwords.feature.word.view.WordView"
-        android:label="view_latest"
+        android:label="view_word"
         tools:layout="@layout/view_word" >
     </fragment>
 
