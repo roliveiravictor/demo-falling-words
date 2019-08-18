@@ -50,7 +50,7 @@ class WordViewTest {
     @Test
     fun test_bindObservers_shouldReturnNothingNull() {
         fragment?.vm?.apply {
-            assertTrue(words.hasObservers())
+            assertTrue(guess.hasObservers())
         }
     }
 

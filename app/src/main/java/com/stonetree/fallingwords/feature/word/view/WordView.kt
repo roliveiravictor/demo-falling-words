@@ -42,8 +42,8 @@ class WordView : Fragment() {
     private fun bindObservers(
         data: ViewWordBinding
     ){
-        vm.words.observe(viewLifecycleOwner) { words ->
-            data.word.text = words.first().english
+        vm.guess.observe(viewLifecycleOwner) { guess ->
+            data.word.text = guess.word
         }
     }
 }

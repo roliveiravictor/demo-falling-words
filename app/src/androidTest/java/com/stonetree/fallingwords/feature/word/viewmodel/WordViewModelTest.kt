@@ -34,14 +34,14 @@ class WordViewModelTest {
     @Test
     fun test_wordViewModel_shouldReturnDefaultValues() {
         vm.apply {
-            assertThat(words,`is`(any(LiveData::class.java)))
+            assertThat(guess,`is`(any(LiveData::class.java)))
         }
     }
 
     @Test
     fun test_words_shouldReturnChangeLivedData() {
         val observer = lambdaMock<(WordModel) -> Unit>()
-        val mutableData = vm.observeLiveData("words", observer)
+        val mutableData = vm.observeLiveData("guess", observer)
 
         val model = WordModel()
         mutableData.postValue(model)

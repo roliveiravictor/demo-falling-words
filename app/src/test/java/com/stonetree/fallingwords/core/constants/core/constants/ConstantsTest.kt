@@ -1,4 +1,4 @@
-package com.stonetree.fallingwords.core.constants
+package com.stonetree.fallingwords.core.constants.core.constants
 
 import com.stonetree.fallingwords.core.constants.Constants.WORDS_FILE
 import junit.framework.TestCase.assertEquals

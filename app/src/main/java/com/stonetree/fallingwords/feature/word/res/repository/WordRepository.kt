@@ -1,18 +1,21 @@
 package com.stonetree.fallingwords.feature.word.res.repository
 
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import com.stonetree.fallingwords.core.constants.Constants.WORDS_FILE
 import com.stonetree.fallingwords.core.extensions.read
 import com.google.gson.Gson
+import com.stonetree.fallingwords.core.extensions.randomize
+import com.stonetree.fallingwords.feature.word.model.Guess
 import com.stonetree.fallingwords.feature.word.model.WordModel
-
+import java.lang.reflect.Modifier.PRIVATE
 
 class WordRepository {
 
-    private val words = MutableLiveData<List<WordModel>>()
+    private val words = MutableLiveData<Guess>()
 
-    fun getWords(): MutableLiveData<List<WordModel>> {
+    fun getGuess(): MutableLiveData<Guess> {
         return words
     }
 
@@ -30,7 +33,29 @@ class WordRepository {
     fun get(context: Context) {
         WORDS_FILE.read(context)?.apply {
             val model = Gson().fromJson(this, Array<WordModel>::class.java).toList()
-            words.postValue(model)
+            words.postValue(createGuess(model))
+        }
+    }
+
+    private fun createGuess(model: List<WordModel>): Guess {
+        return Guess().also { guess ->
+            val randomPos = model.size.randomize()
+            guess.word = model[randomPos].english
+            guess.translated = model[randomPos].spanish
+            guess.translations = arrayListOf()
+
+            guess.translated?.apply {
+                guess.translations?.add(this)
+            }
+
+            for(i in 0..3) {
+                val randomPos = model.size.randomize()
+                guess.translations?.let { translations ->
+                    model[randomPos].spanish?.apply {
+                        translations.add(this)
+                    }
+                }
+            }
         }
     }
 }
