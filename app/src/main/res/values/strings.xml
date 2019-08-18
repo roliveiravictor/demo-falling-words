@@ -3,4 +3,7 @@
     <string name="word_example">Word</string>
     <string name="word_right">Right</string>
     <string name="word_wrong">Wrong</string>
+    <string name="word_new_game">New Game</string>
+    <string name="word_win">You win!</string>
+    <string name="word_lose">You lose!</string>
 </resources>

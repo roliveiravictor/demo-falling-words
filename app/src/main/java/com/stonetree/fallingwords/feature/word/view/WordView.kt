@@ -1,6 +1,7 @@
 package com.stonetree.fallingwords.feature.word.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,9 @@ import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
+import com.stonetree.fallingwords.R
+import com.stonetree.fallingwords.core.constants.Constants.WORD_TIMEOUT
 import com.stonetree.fallingwords.core.utils.InjectorUtils
 import com.stonetree.fallingwords.databinding.ViewWordBinding
 import com.stonetree.fallingwords.feature.word.viewmodel.WordViewModel
@@ -33,6 +37,11 @@ class WordView : Fragment() {
         return data.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Handler().postDelayed( { view?.apply { navigateToResultView(this) } }, WORD_TIMEOUT)
+    }
+
     private fun bindXml(
         data: ViewWordBinding
     ) {
@@ -43,7 +52,11 @@ class WordView : Fragment() {
         data: ViewWordBinding
     ){
         vm.guess.observe(viewLifecycleOwner) { guess ->
-            data.word.text = guess.word
+            data.translated.text = guess.translations?.first()
         }
+    }
+
+    fun navigateToResultView(view: View) {
+        findNavController().navigate(R.id.action_word_to_result_view)
     }
 }

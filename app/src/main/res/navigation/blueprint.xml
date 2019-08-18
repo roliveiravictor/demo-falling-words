@@ -2,13 +2,53 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/word_view">
+    app:startDestination="@id/start_view">
+
+    <fragment
+        android:id="@+id/start_view"
+        android:name="com.stonetree.fallingwords.feature.start.view.StartView"
+        android:label="view_start"
+        tools:layout="@layout/view_start" >
+        <action
+            android:id="@+id/action_start_to_word_view"
+            app:destination="@id/word_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/word_view"
         android:name="com.stonetree.fallingwords.feature.word.view.WordView"
         android:label="view_word"
         tools:layout="@layout/view_word" >
+        <action
+            android:id="@+id/action_word_to_result_view"
+            app:popUpTo="@id/start_view"
+            app:destination="@id/result_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/result_view"
+        android:name="com.stonetree.fallingwords.feature.result.view.ResultView"
+        android:label="view_result"
+        tools:layout="@layout/view_result" >
+        <action
+            android:id="@+id/action_result_to_start_view"
+            app:destination="@id/start_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="result"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 
 </navigation>

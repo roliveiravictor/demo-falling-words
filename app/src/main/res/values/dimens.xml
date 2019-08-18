@@ -3,4 +3,5 @@
     <dimen name="hundred_dp">100dp</dimen>
     <dimen name="fifty_dp">50dp</dimen>
     <dimen name="teen_dp">10dp</dimen>
+    <dimen name="two_hundred">200dp</dimen>
 </resources>

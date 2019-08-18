@@ -1,0 +1,31 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainView">
+
+    <data>
+        <variable
+            name="view"
+            type="com.stonetree.fallingwords.feature.start.view.StartView"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_start_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/new_game"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="@dimen/two_hundred"
+            android:layout_height="wrap_content"
+            android:text="@string/word_new_game"
+            android:onClick="@{view::navigateToWordView}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
